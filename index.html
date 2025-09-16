@@ -43,13 +43,17 @@
             align-items: center;
         }
         .collection-icon {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             background-color: #4a5a50;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+        .collection-icon svg {
+            width: 24px;
+            height: 24px;
         }
         .collection-text {
             font-size: 12px;
@@ -131,12 +135,9 @@
         </div>
         <div class="collection-btn">
             <div class="collection-icon">
-                <!-- 白色背包图标 -->
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17 6h-1V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H7c-1.1 0-2 
-                             .9-2 2v12c0 1.1.9 2 2 2h10c1.1 0 2-.9 
-                             2-2V8c0-1.1-.9-2-2-2zm-6-2h2v2h-2V4zm6 
-                             16H7V8h10v12z"/>
+                <!-- 白色背包图标（缩小尺寸） -->
+                <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M878.08 778.24v-169.984c0-52.736-60.928-56.32-60.928-56.32v-144.384c0.512-115.2-62.976-162.816-124.928-167.424-13.824-80.384-89.088-142.336-179.712-142.336-89.6 0-163.84 60.416-179.2 139.776-143.36 29.696-124.416 172.032-124.416 172.032v141.312c-67.584 1.024-63.488 61.44-63.488 61.44v164.352c0 51.712 63.488 55.808 63.488 55.808 0 100.864 120.32 93.184 120.32 93.184h366.08c128 0 120.32-92.16 120.32-92.16 70.144-11.776 62.464-55.296 62.464-55.296z m-365.056-616.96c51.712 0 95.232 31.744 109.056 75.776H404.48c13.824-44.032 57.344-75.776 108.544-75.776z m175.616 531.968h-18.432v26.624c0 14.848-12.8 27.136-29.184 27.136s-29.184-12.288-29.184-27.136v-26.624h-275.968c-16.384 0-29.184-12.288-29.184-27.136s12.8-27.136 29.184-27.136h353.28c16.384 0 29.184 12.288 29.184 27.136s-13.312 27.136-29.696 27.136z" fill="#ffffff"></path>
                 </svg>
             </div>
             <div class="collection-text">我的藏品</div>
@@ -151,7 +152,8 @@
     <div class="series-name">青铜面具系列</div>
     <div class="item-details">
         <div class="item-number">NO.AG1020233321</div>
-        <div class="acquire-time">获得时间2024-3-1</div>
+        <!-- 获得时间用JS动态填充 -->
+        <div id="acquire-time" class="acquire-time">获得时间</div>
     </div>
 
     <button id="saveBtn" class="save-album">保存至相册</button>
@@ -161,7 +163,7 @@
             <!-- 使用本地 logo 图片 -->
             <img src="images/sxd-logo.png" alt="三星堆博物馆 Logo">
         </div>
-        <div class="museum-label">三星堆博物馆<br>SANXINGDUI MUSEUM</div>
+        <div class="museum-label">SANXINGDUI MUSEUM</div>
     </div>
 
     <script>
@@ -172,6 +174,15 @@
             link.download = '青花风格青铜面具.png'; // 保存的文件名
             link.click();
         });
+
+        // 自动填充获得时间为系统当前时间
+        function formatDate(date) {
+            const y = date.getFullYear();
+            const m = String(date.getMonth() + 1).padStart(2, '0');
+            const d = String(date.getDate()).padStart(2, '0');
+            return `${y}-${m}-${d}`;
+        }
+        document.getElementById('acquire-time').innerText = "获得时间 " + formatDate(new Date());
     </script>
 </body>
 </html>
