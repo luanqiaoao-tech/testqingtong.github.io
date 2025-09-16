@@ -257,9 +257,9 @@
         }
         document.getElementById('acquire-time').innerText = "获得时间 " + formatDateTime(new Date());
 
-        // 生成随机 10 位数编号
+        // 生成随机 6 位数编号
         function randomCode() {
-            return Math.floor(1000000000 + Math.random() * 9000000000);
+            return Math.floor(100000 + Math.random() * 900000);
         }
         document.getElementById('item-number').innerText = "NO.AG" + randomCode();
 
