@@ -204,10 +204,10 @@
     </div>
 
     <div class="mask-image">
-        <img src="images/mask-qinghua.png" alt="青花风格青铜面具">
+        <img id="maskImage" src="" alt="随机青铜面具">
     </div>
 
-    <div class="series-name">青铜纵目面具——青花系列</div>
+    <div id="seriesName" class="series-name"></div>
     <div class="item-details">
         <div id="item-number" class="item-number">NO.AGXXXXXXXXXX</div>
         <div id="acquire-time" class="acquire-time">获得时间</div>
@@ -237,11 +237,31 @@
     </div>
 
     <script>
-        // 点击按钮下载图片
+        // 材质对应关系
+        const masks = [
+            { file: "mask-huangjin.png", series: "黄金系列" },
+            { file: "mask-maoxian.png", series: "毛线系列" },
+            { file: "mask-mudiao.png", series: "木雕系列" },
+            { file: "mask-qinghua.png", series: "青花系列" },
+            { file: "mask-shidiao.png", series: "石雕系列" },
+            { file: "mask-taoni.png", series: "陶泥系列" },
+            { file: "mask-wanou.png", series: "玩偶系列" },
+            { file: "mask-yuqi.png", series: "玉器系列" }
+        ];
+
+        // 随机选一个
+        const randomMask = masks[Math.floor(Math.random() * masks.length)];
+        const maskImg = document.getElementById("maskImage");
+        const seriesName = document.getElementById("seriesName");
+
+        maskImg.src = "images/" + randomMask.file;
+        seriesName.innerText = "青铜纵目面具——" + randomMask.series;
+
+        // 点击按钮下载对应图片
         document.getElementById('saveBtn').addEventListener('click', function () {
             const link = document.createElement('a');
-            link.href = 'images/mask-qinghua.png';
-            link.download = '青花风格青铜面具.png';
+            link.href = maskImg.src;
+            link.download = randomMask.series + ".png";
             link.click();
         });
 
