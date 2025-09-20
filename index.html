@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>青铜面具系列</title>
+    <title>青铜纵目面具互动</title>
     <!-- 引入中文字体 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
     <style>
@@ -237,16 +237,16 @@
     </div>
 
     <script>
-        // 材质对应关系
+        // 材质对应关系（新增 saveFile 字段）
         const masks = [
-            { file: "mask-huangjin.png", series: "黄金系列" },
-            { file: "mask-maoxian.png", series: "毛线系列" },
-            { file: "mask-mudiao.png", series: "木雕系列" },
-            { file: "mask-qinghua.png", series: "青花系列" },
-            { file: "mask-shidiao.png", series: "石雕系列" },
-            { file: "mask-taoni.png", series: "陶泥系列" },
-            { file: "mask-wanou.png", series: "玩偶系列" },
-            { file: "mask-yuqi.png", series: "玉器系列" }
+            { file: "mask-huangjin.png", saveFile: "mask-huangjinkapian.png", series: "黄金系列" },
+            { file: "mask-maoxian.png", saveFile: "mask-maoxiankapian.png", series: "毛线系列" },
+            { file: "mask-mudiao.png", saveFile: "mask-mudiaokapian.png", series: "木雕系列" },
+            { file: "mask-qinghua.png", saveFile: "mask-qinghuakapian.png", series: "青花系列" },
+            { file: "mask-shidiao.png", saveFile: "mask-shidiaokapian.png", series: "石雕系列" },
+            { file: "mask-taoni.png", saveFile: "mask-taonikapian.png", series: "陶泥系列" },
+            { file: "mask-wanou.png", saveFile: "mask-wanoukapian.png", series: "玩偶系列" },
+            { file: "mask-yuqi.png", saveFile: "mask-yuqikapian.png", series: "玉器系列" }
         ];
 
         // 随机选一个
@@ -257,10 +257,10 @@
         maskImg.src = "images/" + randomMask.file;
         seriesName.innerText = "青铜纵目面具——" + randomMask.series;
 
-        // 点击按钮下载对应图片
+        // 点击按钮下载对应图片（使用 saveFile）
         document.getElementById('saveBtn').addEventListener('click', function () {
             const link = document.createElement('a');
-            link.href = maskImg.src;
+            link.href = "images/" + randomMask.saveFile;  // 下载时用保存图
             link.download = randomMask.series + ".png";
             link.click();
         });
